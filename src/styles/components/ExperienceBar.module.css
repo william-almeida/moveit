@@ -30,3 +30,8 @@ span.currentExperience {
   top: 12px;
   transform: translateX(-50%);
 }
+.experienceBar a {
+  color: #8257e6;
+  font: 600 14px monospace;
+  letter-spacing: 2px;  
+}

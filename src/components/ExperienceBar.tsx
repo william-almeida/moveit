@@ -8,7 +8,7 @@ export function ExperienceBar() {
         <div style={{ width: '60%'}}></div>
         <span
           className={ styles.currentExperience }
-          style={{ left: '60%' }} 
+          style={{ left: '60%' }}
         > 
           360 xp
         </span>
