@@ -13,8 +13,7 @@ export function ExperienceBar() {
           360 xp
         </span>
       </div>
-      {/* [!] Remover esse atalho pro repositorio do github  */}
-      <span>600 xp | <a href="https://github.com/william-almeida/moveit/" target="_blank">GitHub</a></span> 
+      <span>600 xp</span> 
     </header>
   );
 }
