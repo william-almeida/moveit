@@ -19,7 +19,6 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps ) {
-  console.log(props)
   return (
     <ChallengesProvider
       level = { props.level }
@@ -52,10 +51,13 @@ export default function Home(props: HomeProps ) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-   
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;  
+
+  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
+
+  // são string por conta dos cookies, por isso a conversão pra Number
   
   return {
+
     props: {
       level: Number(level),
       currentExperience: Number(currentExperience),

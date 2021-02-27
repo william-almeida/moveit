@@ -1,6 +1,9 @@
 .experienceBar {
   display: flex;
   align-items: center;
+  
+  /* Em telas pequenas como a minha
+  a section colava na experience bar */
   margin-bottom: 3rem;
 }
 

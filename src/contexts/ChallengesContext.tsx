@@ -35,6 +35,8 @@ export function ChallengesProvider({
   children,
   ...rest
  }: ChallengesProviderProps) {
+  // operador ??, se rest.level não tiver uma valor atribuido
+  // o 1 ou qalquer outro valor vai ser passado pro useState
   const [level, setLevel] = useState(rest.level ?? 1);
   const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
@@ -71,10 +73,12 @@ export function ChallengesProvider({
     const challenge = challenges[randomChallengeIndex];
     setActiveChallenge(challenge);
 
+    // por equanto esse do iphone, criar um no LMMS.
+
     new Audio('/notification.mp3').play()
 
     if (Notification.permission === 'granted') {
-      new Notification('MOVE.IT | New Challange \n', {
+      new Notification(`Movement | New ${challenge.type} Challange`, {
         body: `Valendo ${challenge.amount} xp!`
       })
     }
@@ -82,7 +86,7 @@ export function ChallengesProvider({
   };
   function resetChallenge(){
     setActiveChallenge(null);
-  }
+  };
 
   function completeChallenge() {
     if (!activeChallenge){
@@ -99,7 +103,7 @@ export function ChallengesProvider({
     setCurrentExperience(finalExperience);
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1)
-  }
+  };
 
   return(
     <ChallengesContext.Provider
