@@ -26,7 +26,7 @@
 }
 
 /* texto com a quantia de XP */
-span.currentExperience {
+span.currentExperience { 
   position: absolute;
   top: 12px;
   transform: translateX(-50%);
