@@ -1,0 +1,97 @@
+.container {
+  background-color: var(--blue);
+  height: 100vh;
+  width: 100vw;
+  margin: 0 auto 0 0;
+  
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.container .logo{
+  padding: 2.25rem;
+  height: 100%;
+}
+.container .logo img{
+  width: 100%;
+}
+.container .landingPage{
+  width: 100%;
+  height: 100% ;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.landingPage .login{
+  width: 60%;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Logo: movement */
+.landingPage .login > img{
+  margin-bottom: 5rem;
+  filter: var(--invert-white);
+}
+
+/* Github img + text */
+.landingPage .login div{
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  margin: 3rem 4rem 2rem 0;
+}
+
+/* Img GitHub */
+.landingPage .login div img{
+  margin-right: 1rem;
+  width: 4rem;
+}
+
+/* Username input */
+.login form{
+  display: flex;
+  align-items: center;
+}
+.login input{
+  width: 100%;
+  height: 4rem;
+  
+  font-size: 1.1rem;
+  color: var(--white);
+  background: rgb(73,83,184);
+  background: linear-gradient(90deg, rgba(73,83,184,1) 0%, rgba(89,101,224,1) 99%, rgba(89,101,224,1) 100%);
+
+  border: none;
+  border-radius: 5px 0px 0px 5px;
+
+  padding-left: 2rem;
+}
+.login button{
+  width: 5rem;
+  height: 4rem;
+
+  border: none;
+  border-radius:  0px 5px 5px 0px;
+  padding: 1rem;
+
+  background-color: var(--green);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 200ms;
+}
+
+.login button:disabled {
+  background-color: var(--blue-dark);
+  cursor: not-allowed;
+}
+

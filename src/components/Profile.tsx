@@ -1,17 +1,42 @@
+import { useRouter } from 'next/router';
+import { useContext } from 'react';
+
 import styles from '../styles/components/Profile.module.css';
 import { ChallengesContext } from '../contexts/ChallengesContext';
-import { useContext } from 'react';
-export function Profile(){
+
+
+interface UserGitHub {
+  name: string;
+  avatar_url: string;
+}
+
+export function Profile(user: UserGitHub){
+  const { push } = useRouter();
   const { level } = useContext(ChallengesContext);
   return(
     <div className={ styles.profileContainer }>
-      <img src="https://github.com/william-almeida.png" alt="foto de perfil"/>
+      <img src={user?.avatar_url} alt={user?.name} />
       <div>
-        <strong>William Almeida</strong>
+        <div className={ styles.user }>
+          <strong>
+            {user?.name}
+            
+          </strong>
+          <button
+            type='button'
+            onClick={function (eventInfo) {
+              push('/');
+              eventInfo.preventDefault();
+            }}
+          >
+              <img src="/icons/exit.svg" alt=""/>
+          </button>
+        </div>
         <p>
           <img src="icons/level.svg" alt="Level"/>
           Level { level }
         </p>
+        
       </div>
     </div>
   );
