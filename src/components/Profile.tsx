@@ -14,11 +14,20 @@ export function Profile(user: UserGitHub){
     <div className={ styles.profileContainer }>
       <img src={user?.avatar_url} alt={user?.name} />
       <div>
-        <strong>{user?.name}</strong>
+        <div className={ styles.user }>
+          <strong>
+            {user?.name}
+            
+          </strong>
+          <button type='button'>
+              <img src="/icons/exit.svg" alt=""/>
+          </button>
+        </div>
         <p>
           <img src="icons/level.svg" alt="Level"/>
           Level { level }
         </p>
+        
       </div>
     </div>
   );

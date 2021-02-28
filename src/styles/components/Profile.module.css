@@ -1,6 +1,7 @@
 .profileContainer{
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .profileContainer > img {
@@ -10,20 +11,53 @@
 }
 
 /* Nome e Level */
-.profileContainer div {
+.profileContainer > div {
   margin-left: 1.5rem;
+  width: 100%;
 }
 
-.profileContainer div strong{
+.profileContainer > div strong{
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--title);
 }
 
-.profileContainer div p {
+.profileContainer .user{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profileContainer .user button{
+  width: 2.5rem;
+  height: 2.5rem;
+
+  background-color: none;
+
+  border-radius: 5px;
+  border: none;
+  transition: background-color 200ms;
+}
+
+.profileContainer .user button:hover{
+  background-color: var(--red);
+}
+.profileContainer .user button:hover img{
+  filter: var(--invert-white);
+}
+
+.profileContainer .user button img{
+  margin: auto; 
+  display: block;
+  width: 1.5rem;
+  transition: 200ms;
+}
+
+.profileContainer > div p {
   font-size: 1rem;
   margin-top: 0.5rem;
 }
-.profileContainer div p img {
+.profileContainer > div p img {
   margin-right: 0.5rem;
 }
