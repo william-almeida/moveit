@@ -35,16 +35,16 @@ export function ChallengesProvider({
   children,
   ...rest
  }: ChallengesProviderProps) {
+  const [level, setLevel] = useState(rest.level)
+  const [currentExperience, setCurrentExperience] = useState(rest.currentExperience)
+  const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted)
+  const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false)
   // operador ??, se rest.level não tiver uma valor atribuido
   // o 1 ou qalquer outro valor vai ser passado pro useState
-  const [level, setLevel] = useState(rest.level ?? 1);
-  const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
-  const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
   const [activeChallenge, setActiveChallenge] = useState(null);
 
   const experienceToNextLevel = Math.pow((level + 1) * 4 ,2);
 
-  const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
 
   // quando o segundo parametro do useEffect é um []
   // significa que o a função vai ser executada uma única vez
