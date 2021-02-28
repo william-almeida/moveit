@@ -1,67 +1,29 @@
-import Head from "next/head";
-import {GetServerSideProps} from 'next';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-import { ChallengesProvider } from "../contexts/ChallengesContext";
-import { CountdownProvider } from '../contexts/CountdownContext';
-
-import { CompletedChallenges } from "../components/CompletedChallenges";
-import { ExperienceBar } from "../components/ExperienceBar";
-import { Profile } from "../components/Profile";
-import { Countdown } from "../components/Countdown";
-import { ChallengeBox } from "../components/ChallengeBox";
-
-import styles from '../styles/pages/Home.module.css';
-
-interface HomeProps {
-  level: number;
-  currentExperience: number;
-  challengesCompleted: number;
-}
-
-export default function Home(props: HomeProps ) {
-  return (
-    <ChallengesProvider
-      level = { props.level }
-      currentExperience = {props.currentExperience}
-      challengesCompleted = { props.challengesCompleted }
-
-    >
-      <div className={ styles.container }>
-        <Head>
-          <title>Início | Movement</title>
-        </Head>
-
-        <ExperienceBar />
-
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
-    </ChallengesProvider>
-  );
-}
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
-
-  // são string por conta dos cookies, por isso a conversão pra Number
+export default function Profile() {
+  const router = useRouter();
+  const [username, setUsername] = useState('');
   
-  return {
-
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted),
-    }
-  }
+  return (
+    <div>
+      <form
+        onSubmit={function (eventInfo) {
+          router.push(`/${username}`);
+          eventInfo.preventDefault();
+        }}
+      >
+        <input
+          type="text"
+          placeholder="insira seu username"
+          onChange={(eventInfo) => {
+            setUsername(eventInfo.target.value);
+          }}
+        />
+        <button type="submit" disabled={username.length === 0}>
+          login
+        </button>
+      </form>
+    </div>
+  )
 }
