@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-  Desenvolvido na 4° edição da Next Level Week pela Rocketseat :rocket: :computer:
+  Desenvolvido na 4° edição da Next Level Week :computer:
 </h3>
 
 <h1 align="center">
