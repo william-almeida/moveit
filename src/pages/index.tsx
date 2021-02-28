@@ -2,14 +2,14 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export default function Profile() {
-  const router = useRouter();
+  const { push } = useRouter();
   const [username, setUsername] = useState('');
   
   return (
     <div>
       <form
         onSubmit={function (eventInfo) {
-          router.push(`/${username}`);
+          push(`/${username}`);
           eventInfo.preventDefault();
         }}
       >

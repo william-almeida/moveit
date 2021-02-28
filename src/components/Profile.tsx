@@ -1,4 +1,6 @@
+import { useRouter } from 'next/router';
 import { useContext } from 'react';
+
 import styles from '../styles/components/Profile.module.css';
 import { ChallengesContext } from '../contexts/ChallengesContext';
 
@@ -9,6 +11,7 @@ interface UserGitHub {
 }
 
 export function Profile(user: UserGitHub){
+  const { push } = useRouter();
   const { level } = useContext(ChallengesContext);
   return(
     <div className={ styles.profileContainer }>
@@ -19,7 +22,13 @@ export function Profile(user: UserGitHub){
             {user?.name}
             
           </strong>
-          <button type='button'>
+          <button
+            type='button'
+            onClick={function (eventInfo) {
+              push('/');
+              eventInfo.preventDefault();
+            }}
+          >
               <img src="/icons/exit.svg" alt=""/>
           </button>
         </div>
