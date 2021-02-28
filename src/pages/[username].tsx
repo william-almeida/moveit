@@ -10,15 +10,20 @@ import { Profile } from "../components/Profile";
 import { Countdown } from "../components/Countdown";
 import { ChallengeBox } from "../components/ChallengeBox";
 
-
+interface userGithub {
+  name: string;
+  avatar_url: string;
+}
 
 interface HomeProps {
+  user: userGithub;
   level: number;
   currentExperience: number;
   challengesCompleted: number;
 }
 
 export default function Home(props: HomeProps ) {
+  const { user } = props
   return (
     <ChallengesProvider
       level = { props.level }
@@ -36,7 +41,7 @@ export default function Home(props: HomeProps ) {
         <CountdownProvider>
           <section>
             <div>
-              <Profile />
+              <Profile {...user} />
               <CompletedChallenges />
               <Countdown />
             </div>
@@ -51,7 +56,9 @@ export default function Home(props: HomeProps ) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-
+  const { username } = ctx.params
+  const response = await fetch(`https://api.github.com/users/${username}`)
+  const user = await response.json();
   const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
 
   // são string por conta dos cookies, por isso a conversão pra Number
@@ -59,6 +66,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
 
     props: {
+      user,
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),

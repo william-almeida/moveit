@@ -1,13 +1,20 @@
+import { useContext } from 'react';
 import styles from '../styles/components/Profile.module.css';
 import { ChallengesContext } from '../contexts/ChallengesContext';
-import { useContext } from 'react';
-export function Profile(){
+
+
+interface UserGitHub {
+  name: string;
+  avatar_url: string;
+}
+
+export function Profile(user: UserGitHub){
   const { level } = useContext(ChallengesContext);
   return(
     <div className={ styles.profileContainer }>
-      <img src="https://github.com/william-almeida.png" alt="foto de perfil"/>
+      <img src={user?.avatar_url} alt={user?.name} />
       <div>
-        <strong>William Almeida</strong>
+        <strong>{user?.name}</strong>
         <p>
           <img src="icons/level.svg" alt="Level"/>
           Level { level }
