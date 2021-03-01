@@ -1,10 +1,8 @@
+
 .container {
   background-color: var(--blue);
   height: 100vh;
   width: 100vw;
-  margin: 0 auto 0 0;
-  
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -77,6 +75,10 @@
 
   padding-left: 2rem;
 }
+.loginGithub input::placeholder{
+  color: #fff;
+
+}
 .loginGithub button{
   width: 5rem;
   height: 4rem;
@@ -98,3 +100,27 @@
   cursor: not-allowed;
 }
 
+@media(max-width: 780px){
+  .container {
+    background-color: var(--blue);
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto 0 0;
+    
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .container .logo{
+    padding: 0;
+    height: 20%;
+  }
+  .container .logo img{
+    width: 7rem;
+  }
+  .container .landingPage{
+    height: 80%;
+  }
+  .landingPage .loginGithub{
+    width: 80%;
+  }
+}
