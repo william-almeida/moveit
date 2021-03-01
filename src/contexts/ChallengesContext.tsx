@@ -45,7 +45,7 @@ export function ChallengesProvider({
 
   const experienceToNextLevel = Math.pow((level + 1) * 4 ,2);
 
-
+  let mobiDetect = false;
   // quando o segundo parametro do useEffect é um []
   // significa que o a função vai ser executada uma única vez
   function isMobile() { 
@@ -57,15 +57,15 @@ export function ChallengesProvider({
     || navigator.userAgent.match(/BlackBerry/i)
     || navigator.userAgent.match(/Windows Phone/i)
     ){
-       return true;
+       return mobiDetect =true;
      }
     else {
-       return false;
+       return (mobiDetect = false);
       }
   }
 
   useEffect(() => {
-    if (!isMobile){
+    if (!mobiDetect){
       Notification.requestPermission();
     }
   }, [])
