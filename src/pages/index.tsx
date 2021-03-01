@@ -15,7 +15,7 @@ export default function Profile() {
       </div>
 
       <div className={ styles.landingPage }>
-        <div className={ styles.login }>
+        <div className={ styles.loginGithub }>
           <img src="logo-full.svg" alt="Logo"/>
           <h1>Bem-vindo</h1>
           <div>

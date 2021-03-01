@@ -19,3 +19,15 @@
   align-content: center;
 
 }
+
+@media(max-width: 780px){
+  .container {
+    height: 100%;
+    width: 90vw;
+  }
+  .container section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+}

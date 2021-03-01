@@ -1,10 +1,8 @@
+
 .container {
   background-color: var(--blue);
   height: 100vh;
   width: 100vw;
-  margin: 0 auto 0 0;
-  
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -14,9 +12,12 @@
 .container .logo{
   padding: 2.25rem;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 .container .logo img{
   width: 100%;
+  height: auto;
 }
 .container .landingPage{
   width: 100%;
@@ -27,7 +28,7 @@
   justify-content: center;
 }
 
-.landingPage .login{
+.landingPage .loginGithub{
   width: 60%;
   color: var(--white);
   display: flex;
@@ -36,31 +37,31 @@
 
 
 /* Logo: movement */
-.landingPage .login > img{
+.landingPage .loginGithub > img{
   margin-bottom: 5rem;
   filter: var(--invert-white);
 }
 
 /* Github img + text */
-.landingPage .login div{
+.landingPage .loginGithub div{
   line-height: 1.5;
   display: flex;
   align-items: center;
-  margin: 3rem 4rem 2rem 0;
+  margin: 2rem 0;
 }
 
 /* Img GitHub */
-.landingPage .login div img{
+.landingPage .loginGithub div img{
   margin-right: 1rem;
   width: 4rem;
 }
 
 /* Username input */
-.login form{
+.loginGithub form{
   display: flex;
   align-items: center;
 }
-.login input{
+.loginGithub input{
   width: 100%;
   height: 4rem;
   
@@ -74,7 +75,11 @@
 
   padding-left: 2rem;
 }
-.login button{
+.loginGithub input::placeholder{
+  color: #fff;
+
+}
+.loginGithub button{
   width: 5rem;
   height: 4rem;
 
@@ -90,8 +95,32 @@
   transition: 200ms;
 }
 
-.login button:disabled {
+.loginGithub button:disabled {
   background-color: var(--blue-dark);
   cursor: not-allowed;
 }
 
+@media(max-width: 780px){
+  .container {
+    background-color: var(--blue);
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto 0 0;
+    
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .container .logo{
+    padding: 0;
+    height: 20%;
+  }
+  .container .logo img{
+    width: 7rem;
+  }
+  .container .landingPage{
+    height: 80%;
+  }
+  .landingPage .loginGithub{
+    width: 80%;
+  }
+}
