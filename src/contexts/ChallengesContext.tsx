@@ -51,11 +51,10 @@ export function ChallengesProvider({
   // quando o segundo parametro do useEffect é um []
   // significa que o a função vai ser executada uma única vez
   
-  if (!isMobile){
-    useEffect(() => {
-      Notification.requestPermission();
-    }, [])
-  }  
+  
+  useEffect(() => {
+    Notification.requestPermission();
+  }, [])
 
   useEffect(() => {
     Cookies.set('level', String(level));
@@ -81,7 +80,7 @@ export function ChallengesProvider({
 
     new Audio('/notification.mp3').play()
 
-    if (Notification.permission === 'granted') {
+    if (Notification.permission === 'granted' && !isMobile) {
       new Notification(`Movement | New ${challenge.type} Challange`, {
         body: `Valendo ${challenge.amount} xp!`
       })
