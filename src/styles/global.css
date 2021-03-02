@@ -18,6 +18,7 @@
   --invert-white: brightness(0) invert(1);
 }
 
+
 @media(max-width: 1080px){
   html {
     /* font-size 15px */
