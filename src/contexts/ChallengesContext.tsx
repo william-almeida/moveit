@@ -10,7 +10,6 @@ interface Challenge {
 }
 
 interface ChallengesContextData {
-  isMobile: boolean;
   level: number
   currentExperience: number;
   experienceToNextLevel: number;
@@ -25,7 +24,6 @@ interface ChallengesContextData {
 
 interface ChallengesProviderProps {
   children: ReactNode;
-  isMobile: boolean;
   level: number;
   currentExperience: number;
   challengesCompleted: number; 
@@ -37,7 +35,6 @@ export function ChallengesProvider({
   children,
   ...rest
  }: ChallengesProviderProps) {
-  const isMobile = rest.isMobile;
   const [level, setLevel] = useState(rest.level)
   const [currentExperience, setCurrentExperience] = useState(rest.currentExperience)
   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted)
@@ -51,10 +48,6 @@ export function ChallengesProvider({
   // quando o segundo parametro do useEffect é um []
   // significa que o a função vai ser executada uma única vez
   
-  
-  useEffect(() => {
-    Notification.requestPermission();
-  }, [])
 
   useEffect(() => {
     Cookies.set('level', String(level));
@@ -78,15 +71,7 @@ export function ChallengesProvider({
 
     // por equanto esse do iphone, criar um no LMMS.
 
-    new Audio('/notification.mp3').play()
-
-    if (("Notification" in window)){
-      if (Notification.permission === 'granted') {
-        new Notification(`Movement | New ${challenge.type} Challange`, {
-          body: `Valendo ${challenge.amount} xp!`
-        })
-      }
-    }
+    new Audio('/notification.mp3').play() 
     
   };
   function resetChallenge(){
@@ -113,7 +98,6 @@ export function ChallengesProvider({
   return(
     <ChallengesContext.Provider
       value={{
-        isMobile,
         level,
         currentExperience,
         experienceToNextLevel,

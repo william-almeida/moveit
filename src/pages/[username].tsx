@@ -16,7 +16,6 @@ interface userGithub {
 }
 
 interface HomeProps {
-  isMobile: boolean;
   user: userGithub;
   level: number;
   currentExperience: number;
@@ -27,7 +26,6 @@ export default function Home(props: HomeProps ) {
   const { user } = props
   return (
     <ChallengesProvider
-      isMobile = { props.isMobile}
       level = { props.level }
       currentExperience = {props.currentExperience}
       challengesCompleted = { props.challengesCompleted }
@@ -63,16 +61,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const user = await response.json();
   const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
   
-  const ua = ctx.req.headers['user-agent'];
-  console.log(ua);
-  const isMobile = Boolean(ua.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i));
-  
   // são string por conta dos cookies, por isso a conversão pra Number
   
   return {
-
     props: {
-      isMobile,
       user,
       level: Number(level ?? 1),
       currentExperience: Number(currentExperience ?? 0),
