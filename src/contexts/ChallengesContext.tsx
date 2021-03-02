@@ -10,6 +10,7 @@ interface Challenge {
 }
 
 interface ChallengesContextData {
+  isMobile: boolean;
   level: number
   currentExperience: number;
   experienceToNextLevel: number;
@@ -23,7 +24,8 @@ interface ChallengesContextData {
 }
 
 interface ChallengesProviderProps {
-  children: ReactNode
+  children: ReactNode;
+  isMobile: boolean;
   level: number;
   currentExperience: number;
   challengesCompleted: number; 
@@ -35,6 +37,7 @@ export function ChallengesProvider({
   children,
   ...rest
  }: ChallengesProviderProps) {
+  const isMobile = rest.isMobile
   const [level, setLevel] = useState(rest.level)
   const [currentExperience, setCurrentExperience] = useState(rest.currentExperience)
   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted)
@@ -45,30 +48,14 @@ export function ChallengesProvider({
 
   const experienceToNextLevel = Math.pow((level + 1) * 4 ,2);
 
-  let mobiDetect = false;
   // quando o segundo parametro do useEffect é um []
   // significa que o a função vai ser executada uma única vez
-  function isMobile() { 
-    if( navigator.userAgent.match(/Android/i)
-    || navigator.userAgent.match(/webOS/i)
-    || navigator.userAgent.match(/iPhone/i)
-    || navigator.userAgent.match(/iPad/i)
-    || navigator.userAgent.match(/iPod/i)
-    || navigator.userAgent.match(/BlackBerry/i)
-    || navigator.userAgent.match(/Windows Phone/i)
-    ){
-       return mobiDetect =true;
-     }
-    else {
-       return (mobiDetect = false);
-      }
-  }
-
-  useEffect(() => {
-    if (!mobiDetect){
+  
+  if (!isMobile){
+    useEffect(() => {
       Notification.requestPermission();
-    }
-  }, [])
+    }, [])
+  }  
 
   useEffect(() => {
     Cookies.set('level', String(level));
@@ -125,6 +112,7 @@ export function ChallengesProvider({
   return(
     <ChallengesContext.Provider
       value={{
+        isMobile,
         level,
         currentExperience,
         experienceToNextLevel,
