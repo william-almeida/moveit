@@ -65,8 +65,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   
   const ua = ctx.req.headers['user-agent'];
   const isMobile = Boolean(ua.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i));
-
-  console.log(isMobile)
   // são string por conta dos cookies, por isso a conversão pra Number
   
   return {

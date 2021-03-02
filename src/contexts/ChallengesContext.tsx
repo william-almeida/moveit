@@ -37,7 +37,7 @@ export function ChallengesProvider({
   children,
   ...rest
  }: ChallengesProviderProps) {
-  const isMobile = rest.isMobile
+  const isMobile = rest.isMobile;
   const [level, setLevel] = useState(rest.level)
   const [currentExperience, setCurrentExperience] = useState(rest.currentExperience)
   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted)
@@ -80,12 +80,13 @@ export function ChallengesProvider({
 
     new Audio('/notification.mp3').play()
 
-    if (Notification.permission === 'granted' && !isMobile) {
-      new Notification(`Movement | New ${challenge.type} Challange`, {
-        body: `Valendo ${challenge.amount} xp!`
-      })
+    if (!isMobile){
+      if (Notification.permission === 'granted') {
+        new Notification(`Movement | New ${challenge.type} Challange`, {
+          body: `Valendo ${challenge.amount} xp!`
+        })
+      }
     }
-
   };
   function resetChallenge(){
     setActiveChallenge(null);
