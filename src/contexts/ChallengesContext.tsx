@@ -80,7 +80,7 @@ export function ChallengesProvider({
 
     new Audio('/notification.mp3').play()
 
-    if (!("Notification" in window)){
+    if (("Notification" in window)){
       if (Notification.permission === 'granted') {
         new Notification(`Movement | New ${challenge.type} Challange`, {
           body: `Valendo ${challenge.amount} xp!`
